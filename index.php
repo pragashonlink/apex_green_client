@@ -865,37 +865,99 @@ For cavity walls and loft insulation</h1>
       <span class="sr-only">77% Complete</span>
     </div>
 </div>
-                                <p class="card-title">Do you Receive Income Related Benefits?</p>
+                                <p class="card-title">Any benefits received within the home?</p>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <span class="fancy-input radio">
-                                            <input type="radio" name="benefits" value="Yes"/>
+                                            <span class="fancy-input checkbox">
+                                            <input onclick="hasBenefitsAvailable();" type="checkbox" name="chk_benefits" value="PC"/>
                                             <label for="" class="fancy-input-inner"></label>
                                         </span>
-                                            <label class="form-label">Yes</label>
+                                            <label class="form-label">Pension Credit</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <span class="fancy-input checkbox">
+                                            <input onclick="hasBenefitsAvailable();" type="checkbox" name="chk_benefits" value="CTC"/>
+                                            <label for="" class="fancy-input-inner"></label>
+                                        </span>
+                                            <label class="form-label">Child Tax Credit</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <span class="fancy-input checkbox">
+                                            <input onclick="hasBenefitsAvailable();" type="checkbox" name="chk_benefits" value="UC"/>
+                                            <label for="" class="fancy-input-inner"></label>
+                                        </span>
+                                            <label class="form-label">Universal Credit</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <span class="fancy-input radio">
-                                                <input type="radio" name="benefits" value="No"/>
+                                            <span class="fancy-input checkbox">
+                                                <input onclick="hasBenefitsAvailable();" type="checkbox" name="chk_benefits" value="WTC"/>
                                                 <label for="" class="fancy-input-inner"></label>
                                             </span>
-                                            <label class="form-label">No</label>
+                                            <label class="form-label">Working Tax Credit</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <span class="fancy-input checkbox">
+                                                <input onclick="hasBenefitsAvailable();" type="checkbox" name="chk_benefits" value="IRESA"/>
+                                                <label for="" class="fancy-input-inner"></label>
+                                            </span>
+                                            <label class="form-label">Income Related Employment and Support Allowance</label>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <span class="fancy-input checkbox">
+                                                <input onclick="hasBenefitsAvailable();" type="checkbox" name="chk_benefits" value="IS"/>
+                                                <label for="" class="fancy-input-inner"></label>
+                                            </span>
+                                            <label class="form-label">Income Support</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <span class="fancy-input checkbox">
+                                                <input onclick="hasBenefitsAvailable();" type="checkbox" name="chk_benefits" value="IBJSA"/>
+                                                <label for="" class="fancy-input-inner"></label>
+                                            </span>
+                                            <label class="form-label">Income Based Job Seekers Allowance</label>
+                                        </div>
+                                    </div>
+                                </div>             
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <span class="fancy-input checkbox">
+                                                <input onclick="noBenefitsAvailable();" type="checkbox" id="chk_benefits_no" name="chk_benefits_no" value="No"/>
+                                                <label for="" class="fancy-input-inner"></label>
+                                            </span>
+                                            <label class="form-label">Do not receive any of the above benefits</label>
+                                        </div>
+                                    </div>
+                                </div>               
+                                
+                                <input type="hidden" id="benefits" name="benefits" value="No"/>                                                                      
+                                
                                 <div class="error-msg">
                                     Please make a selection
                                 </div>
                                 <div class="card-nav-btn-wrp">
                                     <a href="#" class="btn btn-default nav-btn-left">Back</a>
-                                    <a href="#" class="btn nav-btn-right go-next btn-outline outline-primary" data-validate="input:radio[name='benefits']:checked" data-element="radio">Next</a>
+                                    <a href="#" class="btn nav-btn-right go-next btn-outline outline-primary" data-validate="input:checkbox[name='chk_benefits']:checked" data-element="hidden">Next</a>
                                 </div>
                             </div>
+
                             <div class="cards">
 <div class="progress">
     <div class="progress-bar" role="progressbar" aria-valuenow="88.88" aria-valuemin="0" aria-valuemax="100" style="width:88.88%">
@@ -2204,7 +2266,41 @@ Company Registration No: 08335815<br>
  
   ga('create', 'UA-104749734-2', 'auto');
   ga('send', 'pageview');
- 
+
+  function noBenefitsAvailable() {
+      var array = document.getElementsByTagName("input");
+
+      for(var i = 0; i < array.length; i++)
+      {
+          if(array[i].name === "chk_benefits")
+          {
+            if (document.getElementById('chk_benefits_no').checked) {
+              array[i].checked = false;
+              document.getElementById('benefits').value = document.getElementById('chk_benefits_no').value;
+            }
+          }
+      }        
+  }
+
+  function hasBenefitsAvailable() {
+      var array = document.getElementsByTagName("input");
+      var selectedBoxes = [];
+
+      for(var i = 0; i < array.length; i++)
+      {
+          if(array[i].name === "chk_benefits")
+          {
+              if (array[i].checked)
+              {
+                document.getElementById('chk_benefits_no').checked = false;
+                selectedBoxes.push(array[i].value);
+              }
+          }
+      }
+
+      document.getElementById('benefits').value = selectedBoxes.toString();
+  }
+
 </script>
 </body>
 
