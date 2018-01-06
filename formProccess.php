@@ -25,7 +25,8 @@ $query = "INSERT INTO insulations
                         email,
                         address,
                         town,
-                        siteID)
+                        siteID,
+                        time_to_phone)
                     VALUES (
                         '".$_POST['insulation']."',
                         '".$_POST['occupancy']."',
@@ -41,7 +42,8 @@ $query = "INSERT INTO insulations
                         '".$_POST['email']."',
                         '".$_POST['full_address']."',
                         '".$_POST['city']."',
-                        '".$_POST['siteID']."'
+                        '".$_POST['siteID']."',
+                        ''
                     )";
 
 
@@ -49,17 +51,13 @@ if ($con->query($query) === TRUE) {
     $mail_return = sendEmail($_POST);
     if($mail_return['status'] == 'success') {
         $response['status'] = 'success';
-        //echo "success";
     } else {
         $response['status'] = 'error';
         $response['description'] = $mail_return['description'];
-        //echo "error";
     };
 } else {
     $response['status'] = 'error';
     $response['description'] = "Error: " . $query . "<br>" . $con->error;
-    //echo "error";
-    //echo "Error: " . $query . "<br>" . $con->error;
 };
 echo json_encode($response);
 ?>

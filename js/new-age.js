@@ -98,7 +98,7 @@
                 bedrooms : $("input[name='bedrooms']").val(),
                 built : $("input[name='built']:checked").val(),
                 heating : $("input[name='heating']:checked").val(),
-                benefits : $("input[name='benefits']:checked").val(),
+                benefits : $("#benefits").val(),
                 postcode : $("#postcode").val(),
                 firstname : $("input[name='firstname']").val(),
                 lastname : $("input[name='lastname']").val(),
@@ -236,6 +236,21 @@ function validateFirstName() {
         $(firstNameField).parent().removeClass('has-error');
         return true;
     }
+}
+
+function validBenefits() {
+    var benefitsField = $('input[name="benefits"]'),
+        benefitsVal = $.trim($(benefitsField).val()),
+        benefitsError = $(benefitsField).next();
+
+    if(benefitsVal == '') {
+        benefitsError.text('Please make a selection');
+        $(benefitsField).parent().addClass('has-error');
+        benefitsError.show();
+        return false;
+    }
+
+    return true;
 }
 
 function validateLastName() {

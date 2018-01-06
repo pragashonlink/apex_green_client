@@ -126,6 +126,18 @@ _atrk_opts = { atrk_acct:"yZ8Pp1Y1Mn20Io", domain:"apexgreen.co.uk",dynamic: tru
     </nav>
 <style type="text/css">
 
+  .fancy-input.checkbox > input:checked ~ .fancy-input-inner::after {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 20px;
+    height: 20px;
+    content: "\f00c";
+    font-family: FontAwesome;
+    text-align: center;
+    color: #2e6da4;
+}
+
 .navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
     max-height: 410px;
 }
@@ -284,8 +296,18 @@ section.features .feature-item i {
     .inline-error { bottom: -9px; }
 
     @media (max-width: 991px) {  
+.current.min_he550 {
+    height: 535px !important;
 
+    padding: 12px 24px !important;
+}
 
+.min_he550 .form-label {
+    font-size: 12.5px !important;
+}
+.min_he650 {
+    height: 600px !important;
+}
 .nav>li>a {
     padding: 10px 11px;
 }
@@ -420,7 +442,9 @@ section.download {
 
    .card-container .form-label {   font-size: 1.0em !important;}
 
-
+.min_he550 .form-label {
+    font-size: 12.5px !important;
+}
     }
 
 
@@ -515,7 +539,7 @@ For cavity walls and loft insulation</h1>
 
 
                     <form id="form">
-                        <div class="card-container">
+                        <div class="card-container min_he650">
                             <div class="cards current">
 <div class="progress">
     <div class="progress-bar" role="progressbar" aria-valuenow="11.11" aria-valuemin="0" aria-valuemax="100" style="width:11.11%">
@@ -859,7 +883,7 @@ For cavity walls and loft insulation</h1>
                                     <a href="#" class="btn nav-btn-right go-next btn-outline outline-primary" data-validate="input:radio[name='heating']:checked" data-element="radio">Next</a>
                                 </div>
                             </div>
-                            <div class="cards">
+                            <div class="cards min_he550">
 <div class="progress">
     <div class="progress-bar" role="progressbar" aria-valuenow="77.77" aria-valuemin="0" aria-valuemax="100" style="width:77.77%">
       <span class="sr-only">77% Complete</span>
@@ -911,7 +935,7 @@ For cavity walls and loft insulation</h1>
                                                 <input onclick="hasBenefitsAvailable();" type="checkbox" name="chk_benefits" value="IRESA"/>
                                                 <label for="" class="fancy-input-inner"></label>
                                             </span>
-                                            <label class="form-label">Income Related Employment and Support Allowance</label>
+                                            <label class="form-label">Income Related Employment &amp; Support Allowance</label>
                                         </div>
                                     </div>
                                 </div>
@@ -954,7 +978,7 @@ For cavity walls and loft insulation</h1>
                                 </div>
                                 <div class="card-nav-btn-wrp">
                                     <a href="#" class="btn btn-default nav-btn-left">Back</a>
-                                    <a href="#" class="btn nav-btn-right go-next btn-outline outline-primary" data-validate="input:checkbox[name='chk_benefits']:checked" data-element="hidden">Next</a>
+                                    <a href="#" class="btn nav-btn-right go-next btn-outline outline-primary" data-validate='input[name="benefits"]' data-element="hidden">Next</a>
                                 </div>
                             </div>
 
